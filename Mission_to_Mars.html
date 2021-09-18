@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mission to Mars</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container text-center">
+    <!-- Add Jumbotron to Header -->
+    <div class="jumbotron text-center">
+        <h1> Mission to Mars<small> : Created by Ben Shelburn</small></h4>
+        <!-- Add a button to activate scraping script -->
+        <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+    <!-- Add section for Mars News -->
+    <div class="row" id="mars-news">
+        <div class="col-md-12">
+            <div class="media">
+                <div class="media-body">
+                    <h2>Latest Mars News</h2>
+                    <h4 class="media-heading">{{ mars.news_title }}</h4>
+                    <p>{{ mars.news_paragraph }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Section for Featured Image and Facts table -->
+    <div class="row" id="mars-featured-image">
+        <div class="col-md-8">
+            <h2>Featured Mars Image</h2>
+            <img src="{{mars.featured_image }}" class="img-responsive" alt="Responsive image">
+        </div>
+        <div class="col-md-4">
+            <!-- Mars Facts -->
+            <div class="row" id="mars-facts">
+                <h4>Mars Facts</h4>
+                {{ mars.facts | safe }}
+            </div>
+        </div>
+    </div>
+    <!-- Section for hemisphere images -->
+    <div class="row" id="mars-hemisphere-image">
+        <div class="col-md-12 text-center">
+            <h2 class="text-center">Mars Hemispheres</h2>
+            {% for dict in mars.hemisphere %}
+            <div class="col-md-3 text-left">
+                <img src="{{dict.img_url}}" class="img-responsive" alt="Responsive image">
+                <h4>{{dict.title}}</h4>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</body>
+</html>
